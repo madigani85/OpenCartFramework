@@ -17,6 +17,7 @@ public class TC001_AccountRegistrationTest extends BaseClass {
 	@Test
 	public void verify_Account_Registration() {
 
+		logger.info("***Start of Test execution TC001**");
 		HomePage hp = new HomePage(driver);
 		hp.clickMyAccount();
 		hp.clickRegister();
@@ -29,6 +30,7 @@ public class TC001_AccountRegistrationTest extends BaseClass {
 		arp.setTelephone(randomNumeric());
 		arp.setPrivacyPolicy();
 		arp.clickContinue();
+		logger.info("***Final Validation - Validating expected Message**");
 
 		Assert.assertEquals("Your Account Has Been Created!", arp.validateAccountCreation());
 	
