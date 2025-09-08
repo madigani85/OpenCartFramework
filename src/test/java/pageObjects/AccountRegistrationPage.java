@@ -2,6 +2,7 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class AccountRegistrationPage extends BasePage {
@@ -20,14 +21,29 @@ public class AccountRegistrationPage extends BasePage {
 	@FindBy(xpath = "//input[@id='input-email']")
 	WebElement txtEmail;
 
+	@FindBy(xpath = "//input[@id='input-telephone']")
+	WebElement txtTelephone;
+
 	@FindBy(xpath = "//input[@id='input-password']")
 	WebElement txtPassword;
+
+	@FindBy(xpath = "//input[@id='input-confirm']")
+	WebElement txtPasswordConfirm;
 
 	@FindBy(xpath = "//input[@name='agree']")
 	WebElement chkdPolicy;
 
-	@FindBy(xpath = "//button[normalize-space()='Continue']")
+	@FindBy(xpath = "(//input[@value='Continue'])[1]")
 	WebElement btnContinue;
+	
+	
+	
+	@FindBy(xpath = "//h1[normalize-space()='Your Account Has Been Created!']")
+	WebElement accountCreationText;
+	
+	
+	
+	
 
 	public void setFirstName(String firstName) {
 		txtFirstName.sendKeys(firstName);
@@ -43,9 +59,17 @@ public class AccountRegistrationPage extends BasePage {
 		txtEmail.sendKeys(email);
 
 	}
+	
+	public void setTelephone(String telephone) {
+		txtTelephone.sendKeys(telephone);
+	}
 
 	public void setPassword(String password) {
 		txtPassword.sendKeys(password);
+	}
+	
+	public void setPasswordConfirm(String passwordConfirm) {
+		txtPasswordConfirm.sendKeys(passwordConfirm);
 	}
 
 	public void setPrivacyPolicy() {
@@ -54,8 +78,17 @@ public class AccountRegistrationPage extends BasePage {
 	}
 
 	public void clickContinue() {
-		btnContinue.click();
+	/*	Actions action = new Actions(driver);
+		action.moveToElement(btnContinue).click().perform();
 
+		*/ btnContinue.click();
+
+	}
+	
+	
+	public String validateAccountCreation() {
+
+		return accountCreationText.getText();
 	}
 
 }
